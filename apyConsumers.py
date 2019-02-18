@@ -1,4 +1,7 @@
-import json,urllib.request
+import json as j, numpy as n
+with open('1000.json', 'r') as handle:milSemillas=j.load(handle)
+for i in range(len(milSemillas)):print (n.asarray(milSemillas)[i])
+"""import json,urllib.request
 librosApi="http://api.nytimes.com/svc/books/v2/lists/overview.json?published_date=2013-01-01&api-key=76363c9e70bc401bac1e6ad88b13bd1d"
 ErgastApi="http://ergast.com/api/f1/2004/1/results.json"
 data = urllib.request.urlopen(librosApi).read()
@@ -24,3 +27,4 @@ libros=json.dumps(books, indent=4, sort_keys=True)
 pilotosRacer=json.dumps(Ergast, indent=4, sort_keys=True)
 print(libros,pilotosRacer,palabrasR)
 #print(libros, end='', flush=True)
+"""
