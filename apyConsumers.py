@@ -1,6 +1,16 @@
-import json as j, numpy as n
-with open('1000.json', 'r') as handle:milSemillas=j.load(handle)
-for i in range(len(milSemillas)):print (n.asarray(milSemillas)[i])
+from numpy  import asarray as np;from random import randint as rd;from json import load as js
+def rN():return (rd(150,350)*2+9)
+def megaFaker():
+    with open('1000.json', 'r') as handle:
+        milSemillas=js(handle)
+    palabras=["como ","cuando ","donde queda ","como encontrar ","que hacer en ","obtener "]
+    categoria=["animal","carmodle","moviesTitle","NameOfCompany","Drug","uni","apps"]
+    rCategoria   = (str(categoria[rd(0,6)]))
+    rSemilla     = (np(milSemillas)[rd(1,100)][rCategoria])
+    rPalabras    = (str(palabras[rd(0,5)]))
+    return(str(rPalabras+rSemilla))
+print(rN())
+print(megaFaker())
 """import json,urllib.request
 librosApi="http://api.nytimes.com/svc/books/v2/lists/overview.json?published_date=2013-01-01&api-key=76363c9e70bc401bac1e6ad88b13bd1d"
 ErgastApi="http://ergast.com/api/f1/2004/1/results.json"
