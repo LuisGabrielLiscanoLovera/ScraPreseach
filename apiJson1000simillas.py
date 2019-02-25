@@ -1,8 +1,21 @@
-from numpy  import asarray as np;from random import randint as rd;from json import load as js
+from random import randint as rd
+from json import load as js
+try:   
+    from numpy  import asarray as np
+except Exception as e:
+    import subprocess,sys   
+    print ("**** instalando lib Numpy ****")
+    subprocess.call([sys.executable, "-m", "pip", "install", "numpy" ])
+    from numpy  import asarray as np
 
 def megaFaker():
-    with open('1000.json', 'r') as milSemillas:
-        milSemillas=js(milSemillas)   
+    try:       
+        with open('1000.json', 'r') as milSemillas:
+            milSemillas=js(milSemillas)
+    except Exception as e:
+        print (str(e)+"< Archivo no existe!")
+        exit()   
+    
     categoria =[
             "animal",
             "carmodle",
@@ -21,41 +34,38 @@ def megaFaker():
             "peloigro de extinción ",
             "venenoso ",
             "composicion osea ",
-            ]
-    
+            ]    
     elif(rCategoria=="carmodle"):
         palabras=[
             "que es  ",
             "a que sabe ",
             "donde queda ",
             "como encontrar ",
-            "ver "]     
-    
+            "ver "]    
     elif(rCategoria=="moviesTitle"):
         palabras=[
-            "fecha de lanzamiento ",
-            "reparto  ",
-            "secuelas ",
+            "fecha de lanzamiento de ",
+            "reparto  en ",
+            "secuelas de  ",
             "resumen  ",
-            "protagonista ",
-            "elenco ",
-            "descargar ",
-            "animacion ",
-            "calidad ",
-            "cinematic ",
-            "musica " ,
-            "esenario ", 
-            "Historia "  ,
-            "catetgoria " ,
+            "protagonista en ",
+            "elenco de ",
+            "descargar de ",
+            "animacion de ",
+            "calidad  de " ,
+            "cinematic de ",
+            "musica de " ,
+            "esenario en ", 
+            "Historia en"  ,
+            "catetgoria de la" ,
             "errores de la " ,
-            "trama " ,
-            "arte " ,
-            "libro " ,
-            "escritor " ,
-            "gion" ,
-            "etapas ",
-            ]     
-    
+            "trama de" ,
+            "arte de " ,
+            "libro de " ,
+            "escritor de " ,
+            "gion de" ,
+            "etapas de ",
+            ]    
     elif(rCategoria=="NameOfCompany"):
         palabras=[
             "fecha de creacion ",
@@ -65,8 +75,7 @@ def megaFaker():
             "mision de la ",
             "capacidad de trabajadores ",
             "beneficios de la ",
-             ]      
-    
+            ]   
     elif(rCategoria=="uni"):
         palabras=[
             "requisitos para entara en ",
@@ -75,8 +84,7 @@ def megaFaker():
             "como encontrar la ",
             "que hacer en la ",
             "obtener beca en la "
-            ]     
-    
+            ]    
     if(rCategoria=="apps"):
         palabras=[
             "Version ",
@@ -91,16 +99,29 @@ def megaFaker():
             "obtener ",
             "descargar "
             ]        
-    ###################################################
-
-    rSemilla     = (np(milSemillas)[rd(1,100)][rCategoria])
-    rPalabras    = (str(palabras[rd(0,(len(palabras))-1)]))    
+      
+    rSemilla     = np(milSemillas)[rd(0,999)][rCategoria]
+    rPalabras    = str(palabras[rd(0,(len(palabras))-1)])   
+    
+    
+    #################### Documentacion info solo informativo#######################
+    global rn
+    doc="""
+        --------------------Thankas for play!-----------        
+                            Al azar python3
+                            
+        Tiempo segunso           =  [{}] 
+        Tiempo minutos           =  [{}]
+        Tema                     =  [{}]
+        Categoria                =  [{}]         
+        Accion a concatenar      =  [{}]       
+        cantidad de palabras     =  [{}]
+        ------------------------------------------------
+    """.format(rn(),(str(rn()/60)),rCategoria,rSemilla,rPalabras,(len(milSemillas)))    
+    print (doc)
+    ##########################################################    
+    
     return(str(rPalabras+rSemilla))
 
-###################usar un lamdam!#####################
-def rN():return (rd(50,350)*2+9)
-#######################################################
-print("Tiempo ramdom: ")
-print(rN()+(rN()/2-100))
-print("buscador random: ")
-print(megaFaker())
+rn=lambda:int(rd(50,350)*2+9)+(rd(0,100)/3+100)    
+print (megaFaker())
