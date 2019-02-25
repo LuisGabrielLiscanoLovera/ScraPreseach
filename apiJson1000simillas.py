@@ -57,13 +57,13 @@ def megaFaker():
             "musica de " ,
             "esenario en ", 
             "Historia en"  ,
-            "catetgoria de la" ,
+            "catetgoria de la " ,
             "errores de la " ,
             "trama de" ,
             "arte de " ,
             "libro de " ,
             "escritor de " ,
-            "gion de" ,
+            "gion de " ,
             "etapas de ",
             ]    
     elif(rCategoria=="NameOfCompany"):
@@ -104,12 +104,13 @@ def megaFaker():
     rPalabras    = str(palabras[rd(0,(len(palabras))-1)])   
     
     
-    #################### Documentacion info solo informativo#######################
-    global rn
+    
+    #################### Documentacion #######################
+    global rn           
     doc="""
-        --------------------Thankas for play!-----------        
+        --------------------Thankas for play!-----------
+        
                             Al azar python3
-                            
         Tiempo segunso           =  [{}] 
         Tiempo minutos           =  [{}]
         Tema                     =  [{}]
@@ -119,9 +120,32 @@ def megaFaker():
         ------------------------------------------------
     """.format(rn(),(str(rn()/60)),rCategoria,rSemilla,rPalabras,(len(milSemillas)))    
     print (doc)
-    ##########################################################    
+    ##########################################################   
+    palaGenerada=str(rPalabras+rSemilla)
     
+    #lis.append(palaGenerada)
     return(str(rPalabras+rSemilla))
 
-rn=lambda:int(rd(50,350)*2+9)+(rd(0,100)/3+100)    
-print (megaFaker())
+#tiempo
+rn=lambda:int(rd(50,350)*2+9)+(rd(0,100)/3+100)
+print(megaFaker())
+
+#### para evitar palabra repetidas
+def verif():
+    global A
+    return str(A+1)
+    # lis=[]
+    # lis.append("megaFaker()")
+    # lis.append("megaFaker()")
+    # print(lis)
+    # def all_indices(value, qlist):
+    #      indices = []
+    #      idx = -1
+    #     while True:
+    #         try:
+    #             idx = qlist.index(value, idx+1)
+    #             indices.append(idx)
+    #         except ValueError:
+    #             break
+    #     return indices
+    # print(all_indices("megaFaker()", lis))
